@@ -1,0 +1,192 @@
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Application data (local to installation)
+Input/
+Output/
+ProcessedPDFs/
+*.csv
+# Allow reference xlsx files but ignore user data xlsx
+# *.xlsx is handled below more specifically
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+*.backup
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
+.directory
+
+# Build artifacts
+*.msi
+*.exe
+*.dmg
+*.app/
+
+# PyInstaller (but keep build config files)
+dist/
+build/
+# *.spec  - Commented out to allow build_*.spec files
+__pycache__/
+*.pyc
+
+# IDE Configuration
+.vscode/settings.json
+.idea/workspace.xml
+
+# Database backups
+*.db-shm
+*.db-wal
+
+# User-specific settings (if saved locally)
+column_mapping.json
+shipment_mapping.json
+
+# Local config files
+config.ini
+
+# Claude Code settings
+.claude/
+
+# Installer builds
+installer/
+
+# Temporary/test files
+hts_response.html
+nul
+
+# Archive and old documentation
+_Archive/
+TariffMill_Win11_Install/
+/Resources/
+*.sqbpro
+
+# Database files
+database_backups/
+Tariffmill/tariffmill.db
+Tariffmill/TariffmillDB.db
+your_database.db
+
+# Old root-level files (keep only in Tariffmill/)
+/tariffmill.py
+/TariffMill.spec
+/setup.py
+/run.sh
+/INDEX.md
+/QUICKSTART.md
+/QUICK_START.md
+/SETUP.md
+/TESTING_CHECKLIST.md
+/WINDOWS_BUILD_INSTRUCTIONS.md
+
+# Templates - supplier-specific templates are proprietary
+Tariffmill/templates/*.py
+Tariffmill/templates/*.ai_meta.json
+!Tariffmill/templates/__init__.py
+!Tariffmill/templates/base_template.py
+!Tariffmill/templates/sample_template.py
+!Tariffmill/templates/bill_of_lading.py
+!Tariffmill/templates/lacey_act_form.py
+!Tariffmill/templates/simple_invoice.py
+!Tariffmill/templates/standard_invoice.py
+!Tariffmill/templates/tabular_invoice.py
+!Tariffmill/templates/proforma_invoice.py
+!Tariffmill/templates/smart_universal.py
+!Tariffmill/templates/isf_10_plus_2.py
+
+# Utility/dev scripts (not needed for distribution)
+Tariffmill/add_*.py
+Tariffmill/create_*.py
+Tariffmill/debug_*.py
+Tariffmill/extract_*.py
+Tariffmill/migrate_*.py
+Tariffmill/parse_*.py
+Tariffmill/process_*.py
+Tariffmill/test_*.py
+Tariffmill/update_*.py
+Tariffmill/anthropic.py
+Tariffmill/database.py
+Tariffmill/platform_utils.py
+Tariffmill/docs/
+
+# Data files (should not be in repo)
+Tariffmill/Section_232*.csv
+Tariffmill/Section_232*.xlsx
+Tariffmill/*.csv
+Tariffmill/ProcessedPDFs/
+
+# User xlsx files
+/*.xlsx
+Tariffmill/*.xlsx
+# Customer-specific reference files
+Tariffmill/Resources/References/MSI_to Sigma_Parts.xlsx
+Tariffmill/Resources/References/MSI to Sigma*
+Tariffmill/Resources/References/Sec301exclusions.xlsx
+Tariffmill/Resources/References/HTS_Issues*.xlsx
+
+# Installer build artifacts
+installer_output/
+
+# Marketing materials (contain employee/customer data)
+marketing/
+
+# Database backups in References
+Tariffmill/Resources/References/*_backup_*.db
+Tariffmill/Resources/References/tariffmill.db
+
+# Dev session logs
+CLAUDE.md
+
+TariffMill_temp
+.gitmodules
+auth_users.json
