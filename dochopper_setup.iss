@@ -8,7 +8,7 @@
 ;   /dGitHubToken="..."        — PAT for private auth_users.json fetch
 
 #define MyAppName "DocHopper"
-#define MyAppVersion "0.1.2"
+#define MyAppVersion "0.1.3"
 #ifndef MyAppPublisher
   #define MyAppPublisher "DocHopper"
 #endif
@@ -126,7 +126,6 @@ Source: "{#SourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs 
 ; drive-letter path stick around forever, breaking template/DB resolution for
 ; any user whose drive letter mapping differs. Per memory: shared DB lives at
 ; \\YOUR\share
-Source: "config.ini"; DestDir: "{localappdata}\DocHopper"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\_internal\Resources\icon.ico"; WorkingDir: "{app}"
