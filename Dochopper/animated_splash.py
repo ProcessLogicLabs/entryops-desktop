@@ -1,5 +1,5 @@
 """
-DocHopper Premium Splash Screen
+TariffMill Premium Splash Screen
 
 An elegant, high-end splash screen with:
 - Crisp, sharp rendering
@@ -17,9 +17,9 @@ from PyQt5.QtGui import (QPainter, QColor, QPen, QFont, QPainterPath,
 
 
 class AnimatedMillSplash(QWidget):
-    """Premium splash screen for DocHopper."""
+    """Premium splash screen for TariffMill."""
 
-    def __init__(self, app_name: str = "DocHopper", version: str = "", parent=None):
+    def __init__(self, app_name: str = "TariffMill", version: str = "", parent=None):
         super().__init__(parent)
         self.app_name = app_name
         self.version = version
@@ -216,17 +216,41 @@ class AnimatedMillSplash(QWidget):
         painter.setBrush(Qt.NoBrush)
         painter.drawEllipse(QPointF(0, 0), 20 * pulse, 20 * pulse)
 
-        # "TM" monogram - crisp text
-        font = QFont("Segoe UI", 14, QFont.Bold)
-        painter.setFont(font)
+        # Hopper monogram — four spokes radiating from a center hub.
+        # Matches the app icon (Resources/*.svg). Replaces the prior "TM"
+        # text glyph; same drawing works for both the TariffMill and
+        # DocHopper brands since both share the mill/hopper iconography.
+        hopper_fg = QColor(226, 232, 240)
+        hopper_shadow = QColor(0, 0, 0, 100)
 
-        # Shadow
-        painter.setPen(QColor(0, 0, 0, 100))
-        painter.drawText(QRectF(-20, -9, 40, 22), Qt.AlignCenter, "TM")
+        SPOKE_INNER = 6        # distance from center to inner end of spoke
+        SPOKE_OUTER = 14       # distance to outer end
+        SPOKE_THICK = 3.0      # spoke thickness
+        spoke_len = SPOKE_OUTER - SPOKE_INNER
+        radius = SPOKE_THICK / 2
 
-        # Main text
-        painter.setPen(QColor(226, 232, 240))
-        painter.drawText(QRectF(-20, -10, 40, 22), Qt.AlignCenter, "TM")
+        def _spokes(brush, dx=0.0, dy=0.0):
+            painter.setBrush(brush)
+            # Left
+            painter.drawRoundedRect(QRectF(-SPOKE_OUTER + dx, -radius + dy, spoke_len, SPOKE_THICK), radius, radius)
+            # Right
+            painter.drawRoundedRect(QRectF(SPOKE_INNER + dx, -radius + dy, spoke_len, SPOKE_THICK), radius, radius)
+            # Top
+            painter.drawRoundedRect(QRectF(-radius + dx, -SPOKE_OUTER + dy, SPOKE_THICK, spoke_len), radius, radius)
+            # Bottom
+            painter.drawRoundedRect(QRectF(-radius + dx, SPOKE_INNER + dy, SPOKE_THICK, spoke_len), radius, radius)
+
+        painter.setPen(Qt.NoPen)
+        # Shadow pass first (offset 1px down-right)
+        _spokes(hopper_shadow, dx=1.0, dy=1.0)
+        # Main pass
+        _spokes(hopper_fg)
+
+        # Center hub — white outer ring + dark inner dot (donut look)
+        painter.setBrush(hopper_fg)
+        painter.drawEllipse(QPointF(0, 0), 5.0, 5.0)
+        painter.setBrush(QColor(30, 41, 59))   # match emblem_bg base color
+        painter.drawEllipse(QPointF(0, 0), 2.5, 2.5)
 
         painter.restore()
 
@@ -254,7 +278,9 @@ class AnimatedMillSplash(QWidget):
         painter.restore()
 
     def _draw_tagline(self, painter):
-        """Draw tagline."""
+        """Draw tagline. Pulled from _branding.APP_TAGLINE when available so
+        TariffMill and DocHopper render their respective taglines from a
+        single source of truth."""
         painter.save()
 
         opacity = max(0, (self.intro_progress - 0.4) / 0.6) if self.intro_progress > 0.4 else 0
@@ -264,8 +290,16 @@ class AnimatedMillSplash(QWidget):
         painter.setFont(font)
         painter.setPen(QColor(148, 163, 184, int(255 * opacity)))
 
+        try:
+            from Tariffmill._branding import APP_TAGLINE
+        except ImportError:
+            try:
+                from _branding import APP_TAGLINE  # type: ignore[no-redef]
+            except ImportError:
+                APP_TAGLINE = "Customs Documentation Processing"
+
         painter.drawText(QRectF(0, 205, self.width(), 25), Qt.AlignCenter,
-                        "CUSTOMS DOCUMENTATION PROCESSING")
+                        APP_TAGLINE.upper())
 
         painter.restore()
 
@@ -387,7 +421,7 @@ class AnimatedMillSplash(QWidget):
         self.timer.stop()
 
 
-def create_splash(app_name: str = "DocHopper", version: str = "") -> AnimatedMillSplash:
+def create_splash(app_name: str = "TariffMill", version: str = "") -> AnimatedMillSplash:
     return AnimatedMillSplash(app_name, version)
 
 
@@ -399,7 +433,7 @@ if __name__ == "__main__":
     app.setAttribute(Qt.AA_EnableHighDpiScaling, True)
     app.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
 
-    splash = create_splash("DocHopper", "2.4.0")
+    splash = create_splash("TariffMill", "2.4.0")
     splash.show()
 
     screen_geo = app.desktop().availableGeometry()
