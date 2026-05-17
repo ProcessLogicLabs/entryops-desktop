@@ -80,7 +80,7 @@ except ImportError:
         VERSION = get_version()
     except ImportError:
         # Fallback if version.py is not available
-        VERSION = "v0.1.6"
+        VERSION = "v0.1.7"
 
 # ==============================================================================
 # Heavy Imports - These take time to load
@@ -4868,10 +4868,6 @@ class DocHopper(QMainWindow):
         self.tabs.addTab(self.tab_process, "Invoice Processing")
         self.tabs.addTab(self.tab_master, "Parts View")
         self.tabs.addTab(self.tab_tariff_lookup, "Parts Detail Lookup")
-        # ISF Filing tab removed in v1.6.1 — moved to a separate inbox-monitoring
-        # agent. The Dochopper/isf_filing/ package and Dochopper/templates/
-        # isf_10_plus_2.py are kept in place (template auto-discovery disabled)
-        # as the seed for the standalone agent's lift-out.
         # Invoice Mapping, Output Mapping, and Parts Import moved to Configuration menu
         # Customs Config and Section 232 Actions moved to References menu
         

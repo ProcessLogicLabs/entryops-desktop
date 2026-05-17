@@ -8,7 +8,7 @@
 ;   /dGitHubToken="..."        — PAT for private auth_users.json fetch
 
 #define MyAppName "DocHopper"
-#define MyAppVersion "0.1.6"
+#define MyAppVersion "0.1.7"
 #ifndef MyAppPublisher
   #define MyAppPublisher "DocHopper"
 #endif
@@ -145,7 +145,7 @@ Filename: "{app}\{#MyAppExeName}"; Flags: nowait skipifdoesntexist runasoriginal
 const
   TesseractShareDir   = '{#TesseractShareDir}';
   TesseractPattern    = 'tesseract-ocr-w64-setup-*.exe';
-  TesseractInstallerURL = 'https://github.com/UB-Mannheim/tesseract/releases/download/v5.4.0.20240606/tesseract-ocr-w64-setup-5.4.0.20240606.exe';
+  TesseractInstallerURL = 'https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe';
   TesseractWikiURL    = 'https://github.com/UB-Mannheim/tesseract/wiki';
 
 var

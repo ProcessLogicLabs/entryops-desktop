@@ -19,10 +19,6 @@ the operator review pane handles the rest.
 - **Plugin-pattern templates.** Drop a `.py` file into `templates/` and it's
   auto-discovered. Inherit from `BaseTemplate`, override a few regex patterns,
   return line items. No registration step.
-- **Web-UI form-fill via Playwright.** For target systems with no API
-  (government portals, legacy SaaS), DocHopper opens a real Chromium window,
-  pre-fills every field per a JSON selector map, and pauses for the operator
-  to verify-and-submit. The runner never clicks Submit itself.
 - **OCR fallback.** Image-only PDFs route through Tesseract when text
   extraction fails.
 
@@ -39,7 +35,6 @@ The included generic templates cover:
 | `smart_universal` | Data-shape fallback that recognizes part-code / qty / price |
 | `bill_of_lading` | Ocean BOL extraction (gross weight) |
 | `lacey_act_form` | USDA PPQ Form 505 (wood declarations) |
-| `isf_10_plus_2` | CBP ISF Information Sheet (17 numbered fields + 7 address blocks) |
 | `sample_template` | Starter — copy and edit to add your own |
 
 Plus:
@@ -47,8 +42,6 @@ Plus:
   HTS codes, country of origin, and Section 232 metal content.
 - **Excel/CSV export profiles** — operator-configurable column mappings, so
   the same extraction can feed multiple downstream formats.
-- **ISF web-UI driver** (Playwright-based) for filing 10+2s into a customs
-  broker's existing portal.
 
 ## Quickstart
 
@@ -56,7 +49,6 @@ Plus:
 git clone https://github.com/ProcessLogicLabs/dochopper.git
 cd dochopper
 pip install -e .
-python -m playwright install chromium    # only needed for ISF web-UI fill
 python Dochopper/dochopper.py          # or `dochopper` after `pip install`
 ```
 
@@ -68,7 +60,6 @@ that, drop a PDF onto the **PDF Processing** tab and pick a template.
 - Template marketplace / registry
 - Outlook inbox monitor (auto-ingest from a shared mailbox)
 - DocuWare REST integration
-- More target-system drivers beyond the e2open ISF UI
 
 ## Contributing
 
@@ -76,7 +67,6 @@ PRs welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). The big areas where help
 is most useful:
 
 - **New templates** for specific supplier invoice formats
-- **New target-system drivers** (Playwright field-maps for other web UIs)
 - **Documentation** — how to use the parts_master / alias / enrichment pipeline
 
 ## License

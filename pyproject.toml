@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dochopper"
-version = "0.1.6"
+version = "0.1.7"
 description = "Document-driven workflow automation: extract structured data from PDFs/Excel, enrich, and drive downstream systems."
 readme = "README.md"
 license = {text = "MIT"}
