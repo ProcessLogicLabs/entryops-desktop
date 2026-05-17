@@ -73,10 +73,9 @@ a = Analysis(
     datas=[
         # Resources
         (os.path.join(dochopper_dir, 'Resources', 'icon.ico'), 'Resources'),
-        (os.path.join(dochopper_dir, 'Resources', 'dochopper.db'), 'Resources'),
         (os.path.join(dochopper_dir, 'Resources', 'dochopper_logo_small.svg'), 'Resources'),
         (os.path.join(dochopper_dir, 'Resources', 'dochopper_logo_small_dark.svg'), 'Resources'),
-        (os.path.join(dochopper_dir, 'Resources', 'dochopper_icon_hybrid_2.svg'), 'Resources'),
+        (os.path.join(dochopper_dir, 'Resources', 'dochopper_icon.svg'), 'Resources'),
         # Reference files
         (os.path.join(dochopper_dir, 'Resources', 'References', 'hts.db'), 'Resources/References'),
         (os.path.join(dochopper_dir, 'Resources', 'References', 'CBP_232_tariffs.xlsx'), 'Resources/References'),

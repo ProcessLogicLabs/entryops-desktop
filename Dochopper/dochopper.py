@@ -80,7 +80,7 @@ except ImportError:
         VERSION = get_version()
     except ImportError:
         # Fallback if version.py is not available
-        VERSION = "v0.1.0"
+        VERSION = "v0.1.1"
 
 # ==============================================================================
 # Heavy Imports - These take time to load

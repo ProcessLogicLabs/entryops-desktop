@@ -8,7 +8,7 @@
 ;   /dGitHubToken="..."        — PAT for private auth_users.json fetch
 
 #define MyAppName "DocHopper"
-#define MyAppVersion "0.1.0"
+#define MyAppVersion "0.1.1"
 #ifndef MyAppPublisher
   #define MyAppPublisher "DocHopper"
 #endif
