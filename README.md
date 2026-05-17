@@ -40,7 +40,6 @@ The included generic templates cover:
 | `bill_of_lading` | Ocean BOL extraction (gross weight) |
 | `lacey_act_form` | USDA PPQ Form 505 (wood declarations) |
 | `isf_10_plus_2` | CBP ISF Information Sheet (17 numbered fields + 7 address blocks) |
-| `newell_aishida` | Real-world supplier example: Aishida → Newell Brands |
 | `sample_template` | Starter — copy and edit to add your own |
 
 Plus:
