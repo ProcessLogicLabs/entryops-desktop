@@ -1,5 +1,7 @@
 # DocHopper Dependency List
 
+> ⚠ **Imported reference, not current OSS state.** This list is from the internal pre-OSS 1.x line. The current public release is **v0.1.7**; pinned versions and the AI optional dependencies may differ. The authoritative dependency source for 0.1.x is [`pyproject.toml`](../pyproject.toml) and [`requirements.txt`](../requirements.txt). Python requirement for 0.1.x is **>=3.9** (not 3.11).
+
 **Application:** DocHopper v1.3.5
 **Python Version:** 3.11
 **Generated:** 2026-04-16

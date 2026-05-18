@@ -1,5 +1,7 @@
 # DocHopper Data Flow Diagram
 
+> ⚠ **Imported reference, not current OSS state.** This document was carried over from the internal pre-OSS 1.x development line. The current public release is **v0.1.7**; some features described here have not yet been back-ported. See [CHANGELOG.md](../CHANGELOG.md) for what actually ships in 0.1.x.
+
 **Version:** 1.3.5 | **Date:** 2026-04-16
 
 ---

@@ -1,47 +1,40 @@
 # DocHopper
 
-**Document-driven workflow automation.** Drop a PDF or Excel file in, get
-structured data out, drive the next system. Built for the long tail of
-"someone in an office is re-keying data from a PDF into a web form" — customs
-brokerage, AP/AR processing, insurance claims intake, government form filing,
-any workflow with a paper-to-form bottleneck.
+Import process documentation automation. Extracts line-item data from shipper / vendor PDFs (commercial invoices, packing lists, bills of lading), validates it against a parts master and HTS reference database, and exports a structured XLSX worksheet for a downstream customs entry process.
 
-Originally extracted from a production customs-brokerage app, DocHopper ships
-with template scaffolding and a handful of generic extractors. Add a template
-for your supplier or document format, point at your downstream system, and
-the operator review pane handles the rest.
+Built for US import customs brokers and in-house import logistics teams. Extracted from a production customs-brokerage app.
 
-## Why DocHopper
+## Workflow
 
-- **Operator-in-the-loop by design.** The app extracts, the human verifies,
-  the app drives the downstream system. No silent automation that submits the
-  wrong field because a PDF layout changed.
-- **Plugin-pattern templates.** Drop a `.py` file into `templates/` and it's
-  auto-discovered. Inherit from `BaseTemplate`, override a few regex patterns,
-  return line items. No registration step.
-- **OCR fallback.** Image-only PDFs route through Tesseract when text
-  extraction fails.
+1. Drop one or more PDFs (or Excel / CSV invoices, or a ZIP) on the PDF Processing tab.
+2. The template engine picks a parser by document layout and extracts part numbers, quantities, unit prices, country of origin, PO numbers, and weights.
+3. Each part is looked up in the parts_master. HTS code, CBP quantity unit, MID, country of origin, Section 232 metal percentages, and Section 301 exclusion code come from the master record. Parts missing from the database — or in the database but missing required fields — surface in a pre-export dialog.
+4. Enrichment: split line values by material percentage (steel / aluminum / copper / wood / auto), allocate weights proportionally, normalize country fields to ISO 2-letter codes, compute CBP Qty1 / Qty2 from `hts_units`.
+5. Export to XLSX via an operator-configured column-mapping profile. Output is a worksheet ready to hand off to an entry tool.
 
-## What it does today
+The operator reviews and edits the preview table before export.
 
-The included generic templates cover:
+## Components
 
-| Template | What it parses |
-|---|---|
-| `standard_invoice` | Typical commercial invoice (PO, line items, qty, price) |
-| `tabular_invoice` | Invoices with visible table borders / strict columns |
-| `simple_invoice` | Minimal-field documents |
-| `proforma_invoice` | Pre-shipment proformas |
-| `smart_universal` | Data-shape fallback that recognizes part-code / qty / price |
-| `bill_of_lading` | Ocean BOL extraction (gross weight) |
-| `lacey_act_form` | USDA PPQ Form 505 (wood declarations) |
-| `sample_template` | Starter — copy and edit to add your own |
+- **Template engine.** Plugin pattern — drop a `.py` into `Dochopper/templates/`, inherit from `BaseTemplate`, return line items. Auto-discovered at startup. Eight generic templates ship today:
 
-Plus:
-- **Parts master & aliases** — local SQLite store for canonical part numbers,
-  HTS codes, country of origin, and Section 232 metal content.
-- **Excel/CSV export profiles** — operator-configurable column mappings, so
-  the same extraction can feed multiple downstream formats.
+  | Template | Parses |
+  |---|---|
+  | `standard_invoice` | Commercial invoice (PO, line items, qty, price) |
+  | `tabular_invoice` | Invoices with table borders / strict columns |
+  | `simple_invoice` | Minimal-field documents |
+  | `proforma_invoice` | Pre-shipment proformas |
+  | `smart_universal` | Data-shape fallback (part-code / qty / price) |
+  | `bill_of_lading` | Ocean BOL gross weight |
+  | `lacey_act_form` | USDA PPQ Form 505 |
+  | `sample_template` | Starter — copy and edit |
+
+- **parts_master** — local SQLite. Canonical part number, HTS code, CBP qty unit, country of origin, MID, Section 232 metal percentages, country of melt / cast / smelt, Section 301 exclusion code.
+- **HTS reference DB** — bundled `hts.db` for Qty1 / Qty2 unit lookups.
+- **MID list** — managed in Settings.
+- **Export profiles** — column-mapping presets per downstream system.
+- **Folder profiles** — saved input / output folder pairs per client.
+- **OCR fallback** — Tesseract for image-only PDFs. No-op if Tesseract is not installed.
 
 ## Quickstart
 
@@ -49,25 +42,29 @@ Plus:
 git clone https://github.com/ProcessLogicLabs/dochopper.git
 cd dochopper
 pip install -e .
-python Dochopper/dochopper.py          # or `dochopper` after `pip install`
+python Dochopper/dochopper.py
 ```
 
-First launch shows a one-time setup wizard to create an admin account. After
-that, drop a PDF onto the **PDF Processing** tab and pick a template.
+First launch runs a setup wizard for the initial admin account.
+
+1. Settings → set default input / output folders.
+2. Parts Import tab → bulk-load parts_master from CSV.
+3. PDF Processing tab → drop a vendor PDF, pick a template (or let it auto-match), export.
 
 ## Roadmap
 
-- Template marketplace / registry
-- Outlook inbox monitor (auto-ingest from a shared mailbox)
-- DocuWare REST integration
+- Section 232 / 301 / 122 chapter 99 routing per current CSMS guidance
+- Shared mailbox auto-ingest (Outlook)
+- Template registry for sharing supplier formats
+- DMS integrations (DocuWare, etc.)
 
 ## Contributing
 
-PRs welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). The big areas where help
-is most useful:
+See [CONTRIBUTING.md](CONTRIBUTING.md). Most useful contributions:
 
-- **New templates** for specific supplier invoice formats
-- **Documentation** — how to use the parts_master / alias / enrichment pipeline
+- New templates for specific supplier invoice formats
+- parts_master / HTS / Section 232 setup walkthroughs
+- Test coverage for the enrichment pipeline
 
 ## License
 

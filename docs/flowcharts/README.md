@@ -1,5 +1,7 @@
 # DocHopper Flowcharts & Documentation
 
+> ⚠ **Imported reference, not current OSS state.** These flowcharts were carried over from the internal pre-OSS 1.x line (latest reference: v1.6.17). The current public release is **v0.1.7**; features such as Section 122 routing, the cast-iron exception, the MID Required dialog, and the OCR-fallback metadata pipeline are not yet present in the 0.1.x build. See [CHANGELOG.md](../../CHANGELOG.md) for what actually ships.
+
 This directory contains flowcharts and diagrams documenting the DocHopper application workflows and architecture.
 
 ## Flowcharts

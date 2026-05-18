@@ -1,5 +1,7 @@
 # User Workflow
 
+> ⚠ **Imported from internal 1.x line.** The unified Settings dialog layout and the "Add Missing Parts" / Section 232 confirmation dialogs described below match v1.6.x. The current 0.1.x OSS build may surface these differently. See [CHANGELOG.md](../../CHANGELOG.md).
+
 This flowchart shows the end-to-end user journey for processing customs documentation.
 
 ```mermaid

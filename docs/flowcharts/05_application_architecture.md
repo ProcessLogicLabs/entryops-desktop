@@ -1,5 +1,7 @@
 # Application Architecture
 
+> ⚠ **Imported from internal 1.x line.** Components (AuthenticationManager with GitHub remote-users, EnrichmentPipeline Sec 122 routing, OCR Backend with sidecar caching) reflect the v1.6.x architecture. Some are absent or narrower in the current 0.1.x OSS build. Python requirement is **>=3.9** per [`pyproject.toml`](../../pyproject.toml), not 3.12 as listed below. See [CHANGELOG.md](../../CHANGELOG.md).
+
 This flowchart shows the overall system architecture and component relationships.
 
 ```mermaid

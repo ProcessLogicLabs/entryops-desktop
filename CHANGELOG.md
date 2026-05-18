@@ -5,6 +5,70 @@ All notable changes to DocHopper will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+> **Note on version history.** The 0.1.x series is the public OSS release line.
+> The 1.x entries below are retained from the internal pre-OSS development line
+> and describe features that may not all be present in the current 0.1.x build —
+> see the `docs/` notice for context.
+
+## [0.1.7] - 2026-05
+
+### Removed
+- ISF Filing subsystem dropped from the OSS surface (`Dochopper/isf_filing/` package and `templates/isf_10_plus_2.py`). The ISF tab was retired in the internal v1.6.1; the support files were still shipping unused.
+- README references to the Playwright-based ISF web-UI driver, the `isf_10_plus_2` template row, and the `python -m playwright install chromium` quickstart step.
+
+### Fixed
+- Tesseract installer URL now points at the upstream `tesseract-ocr/tesseract` v5.5.0 release. The previous URL (UB-Mannheim v5.5.0.20241111) returned 404; an interim downgrade to UB-Mannheim v5.4.0.20240606 in v0.1.4 worked but is superseded.
+
+## [0.1.6] - 2026-05
+
+### Removed
+- `templates/newell_aishida.py` (Aishida Co. Ltd → Newell Brands real-world example template). Operators wanting a reference should use `sample_template.py`, `lacey_act_form`, or `bill_of_lading`.
+
+## [0.1.5] - 2026-05
+
+### Changed
+- Splash emblem draws the four-spoke hopper graphic programmatically instead of rendering the literal "TM" glyph that survived the OSS rebrand.
+- Splash tagline now reads `APP_TAGLINE` from `_branding.py` — shows "Document-driven workflow automation" rather than "Customs Documentation Processing".
+
+## [0.1.4] - 2026-05
+
+### Fixed
+- Installer Tesseract download URL: the hardcoded UB-Mannheim release `v5.5.0.20241111` was never published and returned 404. Bumped to the then-current UB-Mannheim stable `v5.4.0.20240606`. (Superseded in v0.1.7.)
+
+## [0.1.3] - 2026-05
+
+### Fixed
+- Build: removed `config.ini` from `dochopper_setup.iss` bundle list. The OSS snapshot doesn't ship a `config.ini` (it's per-deployment private data); `get_database_path()` already falls back to a local default on first run.
+
+## [0.1.2] - 2026-05
+
+### Fixed
+- Build: force-added two reference CSVs (parts bulk-import example, Section 232 tariff import format) that were filtered out by the global `*.csv` gitignore rule, causing PyInstaller to fail with "Unable to find ...".
+
+## [0.1.1] - 2026-05
+
+### Fixed
+- Build: removed `dochopper.spec` references to `Dochopper/Resources/dochopper.db` (pruned during sanitization — CH Powell's bundled DB held customer data; fresh installs now bootstrap their own via `CREATE TABLE IF NOT EXISTS`) and to `dochopper_icon_hybrid_2.svg` (OSS icon is `dochopper_icon.svg`).
+
+## [0.1.0] - 2026-05
+
+### Added
+- Initial public OSS release under the MIT License.
+- PyQt5 desktop app with PDF Processing, Invoice Processing, Parts View, and Parts Detail Lookup tabs.
+- Plugin-pattern template engine with auto-discovery — drop a `.py` into `Dochopper/templates/` and it loads on startup.
+- Generic templates: `standard_invoice`, `tabular_invoice`, `simple_invoice`, `proforma_invoice`, `smart_universal`, `bill_of_lading`, `lacey_act_form`, `sample_template`.
+- OCR fallback via Tesseract for image-only PDFs (no-op if Tesseract isn't installed).
+- Parts master + alias table — local SQLite store for canonical part numbers, HTS codes, country of origin, Section 232 metal content.
+- Profile-based XLSX export with operator-configurable column mappings.
+- First-run setup wizard creates an initial admin account.
+- Importer-profile overlay via `billing_settings.isf_importers_path` to keep proprietary data outside the source tree.
+
+---
+
+## Internal pre-OSS history (1.x)
+
+The entries below were carried over from the internal development line and are retained for reference. Not all features described are present in the current 0.1.x OSS build.
+
 ## [1.2.19] - 2026-04-11
 
 ### Security
