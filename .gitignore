@@ -51,6 +51,11 @@ Input/
 Output/
 ProcessedPDFs/
 *.csv
+# Reference template CSVs are NOT customer data — they're the empty
+# parts-master / Section-232 templates the operator copies and fills.
+# The build bundles them into the installer.
+!entryops/Resources/References/parts_master_template.csv
+!entryops/Resources/References/tariff_232_import_template.csv
 # Allow reference xlsx files but ignore user data xlsx
 # *.xlsx is handled below more specifically
 
