@@ -1,9 +1,17 @@
 # EntryOps (desktop)
 
-**Operations platform for customs entry filing.** Drop a PDF or Excel
-file in, get a CBP-ready entry summary out. Built for licensed customs
-brokers, in-house trade-compliance teams, and anyone whose day starts
-with re-keying line items off a supplier's commercial invoice.
+**Automated invoice data extraction for customs entry filing.** Drop a
+PDF or Excel commercial invoice in, get clean, structured line-item
+data out — ready for ingestion into a broker's customs entry system
+(ABI/ACE filer, in-house entry app, or downstream automation). Built
+for licensed customs brokers, in-house trade-compliance teams, and
+anyone whose day starts with re-keying line items off a supplier's
+invoice.
+
+> **Note:** "EntryOps" here refers to the day-to-day **operations** of
+> a customs-entry desk (extraction → enrichment → review → hand-off).
+> The app does not file a CBP 7501 Entry Summary itself; it produces
+> the line-item dataset that feeds your existing entry-filing system.
 
 EntryOps ships as two products under one wordmark:
 
@@ -19,9 +27,11 @@ Section 232 / 301 handling.
 
 ## Why EntryOps
 
-- **Operator-in-the-loop by design.** The app extracts, the human
-  verifies, the app drives the downstream system. No silent automation
-  that submits the wrong field because a PDF layout changed.
+- **Automated extraction, operator-in-the-loop review.** The app
+  extracts, the human verifies, then the structured rows are exported
+  for ingestion by your entry-filing system. No silent automation that
+  hands a downstream system the wrong field because a PDF layout
+  changed.
 - **Plugin-pattern templates.** Drop a `.py` file into `templates/`
   and it's auto-discovered. Inherit from `BaseTemplate`, override a
   few regex patterns, return line items. No registration step.

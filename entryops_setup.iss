@@ -126,7 +126,11 @@ Source: "{#SourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs 
 ; drive-letter path stick around forever, breaking template/DB resolution for
 ; any user whose drive letter mapping differs. Per memory: shared DB lives at
 ; \\YOUR\share
-Source: "config.ini"; DestDir: "{localappdata}\EntryOps"; Flags: ignoreversion
+; config.ini intentionally absent in the OSS edition — the first-run
+; wizard writes a fresh one under {localappdata}\EntryOps. The private
+; build bundles a config.ini with LAN UNCs / auth paths that doesn't
+; belong in a public installer.
+;Source: "config.ini"; DestDir: "{localappdata}\EntryOps"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\_internal\Resources\icon.ico"; WorkingDir: "{app}"
