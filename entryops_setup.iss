@@ -150,13 +150,11 @@ Filename: "{app}\{#MyAppExeName}"; Flags: nowait skipifdoesntexist runasoriginal
 const
   TesseractShareDir   = '{#TesseractShareDir}';
   TesseractPattern    = 'tesseract-ocr-w64-setup-*.exe';
-  ; Upstream tesseract-ocr/tesseract publishes the official Windows
-  ; installers (UB-Mannheim's fork mirrors them but lags). Asset filenames
-  ; embed a build date (YYYYMMDD). When bumping, check
-  ; https://github.com/tesseract-ocr/tesseract/releases for the latest
-  ; tag + matching asset filename. Earlier downgrade to UB-Mannheim
-  ; v5.4.0.20240606 was unnecessary — 5.5.0 does exist on the upstream
-  ; repo, just not on the fork.
+  // Upstream tesseract-ocr/tesseract publishes the official Windows
+  // installers (UB-Mannheim's fork mirrors them but lags). Asset filenames
+  // embed a build date (YYYYMMDD). When bumping, check
+  // https://github.com/tesseract-ocr/tesseract/releases for the latest
+  // tag + matching asset filename.
   TesseractInstallerURL = 'https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe';
   TesseractWikiURL    = 'https://github.com/UB-Mannheim/tesseract/wiki';
 
