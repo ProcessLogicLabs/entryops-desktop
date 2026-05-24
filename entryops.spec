@@ -71,12 +71,13 @@ a = Analysis(
     pathex=[entryops_dir],
     binaries=python_dlls + pytz_binaries + tzdata_binaries + _ocr_binaries + _isf_binaries,
     datas=[
-        # Resources
+        # Resources. (Bundled database intentionally absent in the OSS edition —
+        # first run creates a fresh entryops.db via the CREATE TABLE IF NOT EXISTS
+        # bootstrap path.)
         (os.path.join(entryops_dir, 'Resources', 'icon.ico'), 'Resources'),
-        (os.path.join(entryops_dir, 'Resources', 'entryops.db'), 'Resources'),
         (os.path.join(entryops_dir, 'Resources', 'entryops_logo_small.svg'), 'Resources'),
         (os.path.join(entryops_dir, 'Resources', 'entryops_logo_small_dark.svg'), 'Resources'),
-        (os.path.join(entryops_dir, 'Resources', 'entryops_icon_hybrid_2.svg'), 'Resources'),
+        (os.path.join(entryops_dir, 'Resources', 'entryops_icon.svg'), 'Resources'),
         # Reference files
         (os.path.join(entryops_dir, 'Resources', 'References', 'hts.db'), 'Resources/References'),
         (os.path.join(entryops_dir, 'Resources', 'References', 'CBP_232_tariffs.xlsx'), 'Resources/References'),
