@@ -8,7 +8,7 @@
 ;   /dGitHubToken="..."        — PAT for private auth_users.json fetch
 
 #define MyAppName "EntryOps"
-#define MyAppVersion "0.2.0"
+#define MyAppVersion "0.2.1"
 #ifndef MyAppPublisher
   #define MyAppPublisher "EntryOps"
 #endif

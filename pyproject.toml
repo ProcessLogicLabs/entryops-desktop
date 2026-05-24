@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "entryops-desktop"
-version = "0.2.0"
+version = "0.2.1"
 description = "EntryOps (desktop edition) — extract structured data from PDFs/Excel, enrich against a parts master, and drive downstream customs-entry systems."
 readme = "README.md"
 license = {text = "MIT"}

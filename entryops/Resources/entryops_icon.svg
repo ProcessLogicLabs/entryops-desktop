@@ -1,9 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#1e2c33"/>
-      <stop offset="100%" stop-color="#2e4750"/>
-    </linearGradient>
     <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%"   stop-color="#74c4dc"/>
       <stop offset="100%" stop-color="#3a7a8d"/>
@@ -14,11 +10,12 @@
     </linearGradient>
   </defs>
 
-  <!-- Dark teal rounded background so the chevrons read at favicon size. -->
-  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
-
-  <!-- Five cascading chevrons, scaled & centered in 512×512. -->
-  <g transform="translate(40, 96) scale(1.85)">
+  <!-- Transparent background; the cascading-chevron mark scales to the
+       icon edges. Chevron native bounds (15..210, 40..160) at scale 2.6
+       map to a 507×312 footprint inside 512×512, leaving ~2px of
+       horizontal margin and the chevron shape's inherent vertical
+       margin (the mark isn't square). -->
+  <g transform="translate(-36, -4) scale(2.6)">
     <path d="M 15 40 L 75 100 L 15 160 L 50 160 L 110 100 L 50 40 Z"
           fill="#4a8fa3" opacity="0.8"/>
     <path d="M 40 40 L 100 100 L 40 160 L 75 160 L 135 100 L 75 40 Z"

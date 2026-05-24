@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 60">
   <defs>
     <linearGradient id="eo-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#74c4dc"/>
@@ -10,8 +10,9 @@
     </linearGradient>
   </defs>
 
-  <!-- Dark-theme variant: same chevrons, light wordmark. -->
-  <g transform="translate(8, 13) scale(0.28)">
+  <!-- Dark-theme variant: same chevrons, light wordmark.
+       Tight viewBox so the lowercase p descender survives small renders. -->
+  <g transform="translate(8, -5) scale(0.28)">
     <path d="M 15 40 L 75 100 L 15 160 L 50 160 L 110 100 L 50 40 Z"
           fill="#2e4750" opacity="0.7"/>
     <path d="M 40 40 L 100 100 L 40 160 L 75 160 L 135 100 L 75 40 Z"
@@ -24,7 +25,7 @@
           fill="url(#eo-purple)"/>
   </g>
 
-  <text x="78" y="54" font-family="system-ui, -apple-system, sans-serif"
+  <text x="78" y="36" font-family="system-ui, -apple-system, sans-serif"
         font-size="38" font-weight="600" fill="#e2e8f0">
     Entry<tspan fill="url(#eo-purple)">Ops</tspan>
   </text>

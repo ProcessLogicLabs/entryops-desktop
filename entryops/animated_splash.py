@@ -265,7 +265,11 @@ class AnimatedMillSplash(QWidget):
         font.setLetterSpacing(QFont.AbsoluteSpacing, 3)
         painter.setFont(font)
 
-        title_rect = QRectF(0, 155, self.width(), 50)
+        # Rect tall enough that 36pt font descenders (the "p" in "EntryOps")
+        # don't clip at the bottom edge — Qt.AlignCenter centers the glyph
+        # box in the rect, but glyphs whose descender exceeds the rect
+        # are still clipped by the painter.
+        title_rect = QRectF(0, 145, self.width(), 70)
 
         # Shadow
         painter.setPen(QColor(0, 0, 0, int(100 * opacity)))
@@ -298,7 +302,7 @@ class AnimatedMillSplash(QWidget):
             except ImportError:
                 APP_TAGLINE = "Customs Documentation Processing"
 
-        painter.drawText(QRectF(0, 205, self.width(), 25), Qt.AlignCenter,
+        painter.drawText(QRectF(0, 218, self.width(), 25), Qt.AlignCenter,
                         APP_TAGLINE.upper())
 
         painter.restore()
