@@ -1,13 +1,11 @@
 # User Workflow
 
-> ⚠ **Imported from internal 1.x line.** The unified Settings dialog layout and the "Add Missing Parts" / Section 232 confirmation dialogs described below match v1.6.x. The current 0.1.x OSS build may surface these differently. See [CHANGELOG.md](../../CHANGELOG.md).
-
 This flowchart shows the end-to-end user journey for processing customs documentation.
 
 ```mermaid
 flowchart TD
     subgraph Setup["Initial Setup (One-time)"]
-        A[Install DocHopper] --> B[Launch Application]
+        A[Install EntryOps] --> B[Launch Application]
         B --> C[Open Settings Dialog]
         C --> C1[General: Set Theme, MID List]
         C1 --> C2[PDF Processing: Set Folders]
@@ -75,8 +73,8 @@ flowchart TD
 ### Initial Setup
 
 1. **Install Application**
-   - Run DocHopper_Setup.exe installer
-   - Or use standalone DocHopper.exe
+   - Run EntryOps_Setup.exe installer
+   - Or use standalone EntryOps.exe
 
 2. **Configure Settings** (Settings > Settings)
    - **General**: Choose theme (Light/Dark), configure MID list
@@ -106,29 +104,29 @@ flowchart TD
 ```mermaid
 sequenceDiagram
     participant User
-    participant DocHopper
+    participant EntryOps
     participant Database
     participant FileSystem
 
-    User->>DocHopper: Select Folder Profile
-    DocHopper->>FileSystem: Load Input Files List
-    User->>DocHopper: Select Invoice File
-    DocHopper->>DocHopper: Parse CSV/Excel
-    User->>DocHopper: Select Mapping Profile
-    DocHopper->>DocHopper: Apply Column Mapping
-    User->>DocHopper: Enter Invoice Total
-    User->>DocHopper: Select MID
-    User->>DocHopper: Click Process Invoice
-    DocHopper->>Database: Lookup Part Numbers
-    Database-->>DocHopper: Return Part Data
-    DocHopper->>DocHopper: Calculate Tariffs & Materials
-    DocHopper->>DocHopper: Distribute Values
-    DocHopper-->>User: Display Color-Coded Preview
-    User->>DocHopper: Verify & Edit
-    User->>DocHopper: Click Export Worksheet
-    DocHopper->>FileSystem: Save Excel to Output Folder
-    DocHopper->>FileSystem: Move Source to Processed
-    DocHopper-->>User: Confirm Complete
+    User->>EntryOps: Select Folder Profile
+    EntryOps->>FileSystem: Load Input Files List
+    User->>EntryOps: Select Invoice File
+    EntryOps->>EntryOps: Parse CSV/Excel
+    User->>EntryOps: Select Mapping Profile
+    EntryOps->>EntryOps: Apply Column Mapping
+    User->>EntryOps: Enter Invoice Total
+    User->>EntryOps: Select MID
+    User->>EntryOps: Click Process Invoice
+    EntryOps->>Database: Lookup Part Numbers
+    Database-->>EntryOps: Return Part Data
+    EntryOps->>EntryOps: Calculate Tariffs & Materials
+    EntryOps->>EntryOps: Distribute Values
+    EntryOps-->>User: Display Color-Coded Preview
+    User->>EntryOps: Verify & Edit
+    User->>EntryOps: Click Export Worksheet
+    EntryOps->>FileSystem: Save Excel to Output Folder
+    EntryOps->>FileSystem: Move Source to Processed
+    EntryOps-->>User: Confirm Complete
 ```
 
 ### Quick Reference

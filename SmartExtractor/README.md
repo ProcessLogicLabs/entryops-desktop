@@ -1,6 +1,6 @@
 # Smart Extractor
 
-This module was extracted from DocHopper for future development as a standalone feature.
+This module was extracted from EntryOps for future development as a standalone feature.
 
 ## Files
 
@@ -18,13 +18,13 @@ The Smart Extractor was designed to help with:
 
 **Parked for future development**
 
-This feature was removed from the main DocHopper application on 2025-12-27 to focus on the AI Template Generator integration.
+This feature was removed from the main EntryOps application on 2025-12-27 to focus on the AI Template Generator integration.
 
 ## To Reintegrate
 
-If you want to reintegrate this into DocHopper:
+If you want to reintegrate this into EntryOps:
 
-1. Move the .py files back to the Dochopper directory
+1. Move the .py files back to the Entryops directory
 2. Add a button to open the Smart Extractor dialog
 3. Connect the `template_created` signal to refresh templates
 

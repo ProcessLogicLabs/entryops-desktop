@@ -1,10 +1,8 @@
 # Section 232 / 301 / 122 Tariff Detection
 
-> ⚠ **Imported from internal 1.x line.** Section 122 routing, the cast-iron `9903.82.01` zero-metal exception, and the post-April-2026 chapter-99 table are v1.6.14–v1.6.15 features that are **not yet** present in the 0.1.x OSS build. Treat this as target / regulatory reference, not current behavior. See [CHANGELOG.md](../../CHANGELOG.md).
+This flowchart shows how EntryOps classifies each line item and routes it to the correct chapter 99 heading for Section 232 (metals/wood/auto), Section 301 (China-origin), and Section 122 (Reciprocal Tariff).
 
-This flowchart shows how DocHopper classifies each line item and routes it to the correct chapter 99 heading for Section 232 (metals/wood/auto), Section 301 (China-origin), and Section 122 (Reciprocal Tariff).
-
-The routing logic lives in `EnrichmentPipeline.calculate_declarations()` (`Dochopper/ocrmill_enrichment.py`) and the inline Invoice Processing export path (`Dochopper/dochopper.py`).
+The routing logic lives in `EnrichmentPipeline.calculate_declarations()` (`Entryops/ocrmill_enrichment.py`) and the inline Invoice Processing export path (`Entryops/entryops.py`).
 
 ```mermaid
 flowchart TD

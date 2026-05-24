@@ -3,16 +3,16 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dochopper"
-version = "0.1.7"
-description = "Document-driven workflow automation: extract structured data from PDFs/Excel, enrich, and drive downstream systems."
+name = "entryops-desktop"
+version = "0.2.0"
+description = "EntryOps (desktop edition) — extract structured data from PDFs/Excel, enrich against a parts master, and drive downstream customs-entry systems."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.9"
 authors = [
-    {name = "DocHopper contributors"}
+    {name = "EntryOps contributors"}
 ]
-keywords = ["pdf", "extraction", "ocr", "workflow", "automation", "form-fill", "customs", "invoice"]
+keywords = ["pdf", "extraction", "ocr", "customs", "invoice", "isf", "section-232", "section-301", "workflow", "automation"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: End Users/Desktop",
@@ -28,5 +28,6 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ProcessLogicLabs/dochopper"
-Issues = "https://github.com/ProcessLogicLabs/dochopper/issues"
+Homepage = "https://github.com/ProcessLogicLabs/entryops-desktop"
+Issues = "https://github.com/ProcessLogicLabs/entryops-desktop/issues"
+Cloud = "https://entryops.us"

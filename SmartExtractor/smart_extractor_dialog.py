@@ -1,5 +1,5 @@
 """
-Smart Extractor Dialog for DocHopper
+Smart Extractor Dialog for EntryOps
 
 PyQt5 UI for the SmartExtractor that provides an intuitive interface
 for extracting line items from commercial invoices and creating templates.
@@ -23,7 +23,7 @@ from datetime import datetime
 try:
     from smart_extractor import SmartExtractor, ExtractionResult, LineItem
 except ImportError:
-    from Dochopper.smart_extractor import SmartExtractor, ExtractionResult, LineItem
+    from entryops.smart_extractor import SmartExtractor, ExtractionResult, LineItem
 
 
 class ExtractorThread(QThread):
@@ -565,7 +565,7 @@ try:
     from smart_extractor import SmartExtractor
 except ImportError:
     try:
-        from Dochopper.smart_extractor import SmartExtractor
+        from entryops.smart_extractor import SmartExtractor
     except ImportError:
         SmartExtractor = None
 
@@ -756,7 +756,7 @@ class {class_name}(BaseTemplate):
         # Determine templates directory
         templates_dir = Path(__file__).parent / 'templates'
         if not templates_dir.exists():
-            templates_dir = Path(__file__).parent.parent / 'Dochopper' / 'templates'
+            templates_dir = Path(__file__).parent.parent / 'entryops' / 'templates'
 
         file_path = templates_dir / f"{template_name}.py"
 

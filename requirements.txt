@@ -1,4 +1,4 @@
-# DocHopper Application Requirements
+# EntryOps Application Requirements
 # Compatible with Python 3.8+
 
 # Core dependencies (cross-platform)
@@ -14,7 +14,7 @@ tzdata>=2024.1
 
 # OCR fallback for scanned / image-only PDFs. pytesseract needs the
 # Tesseract binary installed separately; when the binary is absent the
-# NullBackend in Dochopper/ocr/ keeps behavior unchanged.
+# NullBackend in Entryops/ocr/ keeps behavior unchanged.
 pytesseract>=0.3.13
 pymupdf>=1.27.0
 
@@ -25,7 +25,7 @@ pymupdf>=1.27.0
 #
 # (Playwright was previously bundled here for the ISF Filing tab; that
 # tab was retired in v1.6.1 and Playwright is no longer needed by
-# DocHopper. The standalone ISF agent will pull it in on its own.)
+# EntryOps. The standalone ISF agent will pull it in on its own.)
 xlrd>=2.0.1
 
 # Platform-specific (Windows only)

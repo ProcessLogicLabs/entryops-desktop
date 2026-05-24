@@ -1,7 +1,5 @@
 # Invoice Processing Workflow
 
-> ⚠ **Imported from internal 1.x line.** The Section 122 routing step (`9903.03.06` / `9903.03.01`) shown below is not yet present in the 0.1.x OSS build. Treat this as the target reference workflow, not current behavior. See [CHANGELOG.md](../../CHANGELOG.md).
-
 This flowchart shows the complete invoice processing workflow from file upload to export.
 
 ```mermaid

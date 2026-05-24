@@ -1,0 +1,19 @@
+{
+  "version": "oss-stub",
+  "_comment": "Known importer-of-record profiles. When the extracted isf_importer_name matches a 'match' value (case-insensitive, punctuation-stripped), the importer_* fields in the payload are overridden with the canonical 'fields' below. Edit this file to add your importers; no code changes needed. Or point billing_settings.isf_importers_path at an external file outside the source tree to keep proprietary data private.",
+  "profiles": [
+    {
+      "match": "EXAMPLE INC",
+      "label": "Example, Inc. — Anywhere, USA",
+      "fields": {
+        "isf_importer_name":    "EXAMPLE INC",
+        "isf_importer_addr1":   "123 MAIN STREET",
+        "isf_importer_addr2":   "",
+        "isf_importer_city":    "ANYTOWN",
+        "isf_importer_state":   "CA",
+        "isf_importer_zip":     "90210",
+        "isf_importer_country": "US"
+      }
+    }
+  ]
+}

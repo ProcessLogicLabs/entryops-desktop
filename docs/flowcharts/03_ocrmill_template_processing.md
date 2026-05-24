@@ -1,7 +1,5 @@
 # OCRMill Template Processing
 
-> ⚠ **Imported from internal 1.x line.** Features marked v1.4.0, v1.6.12, v1.6.14, and v1.6.17 (OCR fallback, skip-missing-parts dialog, Section 122 routing, MID Required dialog) describe the internal target state, not the current 0.1.x OSS behavior. See [CHANGELOG.md](../../CHANGELOG.md).
-
 This flowchart shows the PDF processing pipeline from file drop to direct XLSX export.
 
 ```mermaid

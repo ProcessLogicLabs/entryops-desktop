@@ -1,5 +1,5 @@
 """
-Smart Line Item Extractor for DocHopper
+Smart Line Item Extractor for EntryOps
 
 A practical approach to extracting line items from commercial invoices
 that handles inconsistent formats by recognizing DATA TYPES, not positions.
@@ -29,12 +29,12 @@ except ImportError:
 
 
 def get_database_path() -> Path:
-    """Get the path to the DocHopper database."""
+    """Get the path to the EntryOps database."""
     # Try multiple locations
     candidates = [
-        Path(__file__).parent / "Resources" / "dochopper.db",
-        Path(__file__).parent.parent / "Resources" / "dochopper.db",
-        Path.home() / ".dochopper" / "dochopper.db",
+        Path(__file__).parent / "Resources" / "entryops.db",
+        Path(__file__).parent.parent / "Resources" / "entryops.db",
+        Path.home() / ".entryops" / "entryops.db",
     ]
     for path in candidates:
         if path.exists():

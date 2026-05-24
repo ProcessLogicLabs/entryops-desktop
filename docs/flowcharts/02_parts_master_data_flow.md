@@ -1,7 +1,5 @@
 # Parts Master Data Flow
 
-> ⚠ **Imported from internal 1.x line.** Schema fields shown (e.g. `country_of_smelt_secondary`, `pga_code`, `Sec301_Exclusion_Tariff`) reflect the v1.6.x parts_master. The current 0.1.x OSS build may have a narrower schema — see [CHANGELOG.md](../../CHANGELOG.md).
-
 This flowchart shows how parts data is managed, imported, and used throughout the application.
 
 ```mermaid

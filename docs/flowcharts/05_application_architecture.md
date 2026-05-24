@@ -1,13 +1,11 @@
 # Application Architecture
 
-> ⚠ **Imported from internal 1.x line.** Components (AuthenticationManager with GitHub remote-users, EnrichmentPipeline Sec 122 routing, OCR Backend with sidecar caching) reflect the v1.6.x architecture. Some are absent or narrower in the current 0.1.x OSS build. Python requirement is **>=3.9** per [`pyproject.toml`](../../pyproject.toml), not 3.12 as listed below. See [CHANGELOG.md](../../CHANGELOG.md).
-
 This flowchart shows the overall system architecture and component relationships.
 
 ```mermaid
 flowchart TD
     subgraph UI["User Interface Layer (PyQt5)"]
-        A[DocHopper Main Window]
+        A[EntryOps Main Window]
         A --> B[Invoice Processing Tab]
         A --> C[PDF Processing Tab]
         A --> D[Parts View Tab]
@@ -231,12 +229,12 @@ erDiagram
 ## File Structure
 
 ```
-Dochopper/
-├── dochopper.py           # Main application
+Entryops/
+├── entryops.py           # Main application
 ├── settings_dialog.py      # Unified settings dialog
 ├── version.py              # Version management
 ├── Resources/
-│   ├── dochopper.db       # SQLite database
+│   ├── entryops.db       # SQLite database
 │   ├── icon.ico            # Application icon
 │   └── References/
 │       ├── hts.db          # HTS code reference database

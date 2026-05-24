@@ -1,19 +1,59 @@
 # Changelog
 
-All notable changes to DocHopper will be documented in this file.
+All notable changes to EntryOps (desktop edition) will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-> **Note on version history.** The 0.1.x series is the public OSS release line.
-> The 1.x entries below are retained from the internal pre-OSS development line
-> and describe features that may not all be present in the current 0.1.x build —
-> see the `docs/` notice for context.
+> **Note on version history.** The 0.2.0 release rebrands the OSS app from
+> EntryOps to EntryOps and re-syncs the codebase with the upstream private
+> repo (EntryOps v1.6.18 → v1.6.26). The 0.1.x entries below are from the
+> EntryOps release line and are preserved for historical reference. The 1.x
+> entries near the bottom are even older — retained from the internal
+> pre-OSS development line and may describe features not present in the
+> current build.
+
+## [0.2.0] - 2026-05
+
+### Changed
+- **Rebranded** from **EntryOps** to **EntryOps** to align with the sibling
+  cloud SaaS at <https://entryops.us>. Same MIT license, same OSS codebase,
+  same maintainer. The GitHub repo moved from `ProcessLogicLabs/entryops`
+  to `ProcessLogicLabs/entryops-desktop`; GitHub serves redirects from the
+  old URL.
+- Python package directory renamed `Entryops/` → `entryops/` (lowercase)
+  to match Python convention and the cloud edition's package naming.
+- Entry point renamed `entryops.py` → `entryops.py`.
+- Installer/spec files renamed `entryops_setup.iss` → `entryops_setup.iss`
+  and `entryops.spec` → `entryops.spec`.
+- App icon + small logo replaced with the EntryOps cascading-chevron mark
+  (five chevrons in muted cyan → EntryOps purple `#7C5CFF`).
+
+### Restored
+- **ISF Filing subsystem** is back in the package (dropped in EntryOps
+  v0.1.7). The UI tab remains hidden — the subsystem ships as a seed for
+  future standalone-agent work and is inert at runtime. If you don't need
+  it you can ignore the `entryops/isf_filing/` package.
+
+### Added (re-synced from upstream EntryOps v1.6.18 → v1.6.26)
+- **AI Template Assistant** — chat-side panel that drafts new supplier
+  templates against a sample invoice. Bring your own Anthropic / OpenAI /
+  Ollama key; provider SDKs install on demand.
+- **Templates panel: collapsible tree grouped by customer** for faster
+  navigation when the template catalog grows beyond a handful.
+- **MID Required dialog typeahead** matches the main MID combo so the
+  operator gets the same fuzzy-match behavior in the pop-up prompt.
+- **OCR PSM=6 default** for table-heavy invoices — better column alignment
+  on the Tesseract fallback path.
+- **NA-safe ReviewFlag classification** so missing-data rows don't poison
+  the validation summary.
+- **Batch net-weight prompt + gross-weight proration** for multi-line
+  invoices where one weight applies to several items.
 
 ## [0.1.7] - 2026-05
 
 ### Removed
-- ISF Filing subsystem dropped from the OSS surface (`Dochopper/isf_filing/` package and `templates/isf_10_plus_2.py`). The ISF tab was retired in the internal v1.6.1; the support files were still shipping unused.
+- ISF Filing subsystem dropped from the OSS surface (`entryops/isf_filing/` package and `templates/isf_10_plus_2.py`). The ISF tab was retired in the internal v1.6.1; the support files were still shipping unused.
 - README references to the Playwright-based ISF web-UI driver, the `isf_10_plus_2` template row, and the `python -m playwright install chromium` quickstart step.
 
 ### Fixed
@@ -38,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.3] - 2026-05
 
 ### Fixed
-- Build: removed `config.ini` from `dochopper_setup.iss` bundle list. The OSS snapshot doesn't ship a `config.ini` (it's per-deployment private data); `get_database_path()` already falls back to a local default on first run.
+- Build: removed `config.ini` from `entryops_setup.iss` bundle list. The OSS snapshot doesn't ship a `config.ini` (it's per-deployment private data); `get_database_path()` already falls back to a local default on first run.
 
 ## [0.1.2] - 2026-05
 
@@ -48,14 +88,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.1] - 2026-05
 
 ### Fixed
-- Build: removed `dochopper.spec` references to `Dochopper/Resources/dochopper.db` (pruned during sanitization — CH Powell's bundled DB held customer data; fresh installs now bootstrap their own via `CREATE TABLE IF NOT EXISTS`) and to `dochopper_icon_hybrid_2.svg` (OSS icon is `dochopper_icon.svg`).
+- Build: removed `entryops.spec` references to `entryops/Resources/entryops.db` (pruned during sanitization — a deployment's bundled DB held customer data; fresh installs now bootstrap their own via `CREATE TABLE IF NOT EXISTS`) and to `entryops_icon_hybrid_2.svg` (OSS icon is `entryops_icon.svg`).
 
 ## [0.1.0] - 2026-05
 
 ### Added
 - Initial public OSS release under the MIT License.
 - PyQt5 desktop app with PDF Processing, Invoice Processing, Parts View, and Parts Detail Lookup tabs.
-- Plugin-pattern template engine with auto-discovery — drop a `.py` into `Dochopper/templates/` and it loads on startup.
+- Plugin-pattern template engine with auto-discovery — drop a `.py` into `entryops/templates/` and it loads on startup.
 - Generic templates: `standard_invoice`, `tabular_invoice`, `simple_invoice`, `proforma_invoice`, `smart_universal`, `bill_of_lading`, `lacey_act_form`, `sample_template`.
 - OCR fallback via Tesseract for image-only PDFs (no-op if Tesseract isn't installed).
 - Parts master + alias table — local SQLite store for canonical part numbers, HTS codes, country of origin, Section 232 metal content.
@@ -257,7 +297,7 @@ The entries below were carried over from the internal development line and are r
 ### Added
 - pip installation support for Linux/Ubuntu users via direct GitHub install
 - pyproject.toml for package distribution
-- Entry point for running as `dochopper` command after pip install
+- Entry point for running as `entryops` command after pip install
 
 ### Changed
 - Various UI improvements and refinements

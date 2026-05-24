@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-DocHopper Password Hash Generator
+EntryOps Password Hash Generator
 
 This script generates SHA-256 password hashes with salt for the auth_users.json file.
 Run this script to create new user credentials.
@@ -41,7 +41,7 @@ def verify_password(password: str, stored_hash: str, salt: str) -> bool:
 
 def main():
     print("=" * 60)
-    print("DocHopper Password Hash Generator")
+    print("EntryOps Password Hash Generator")
     print("=" * 60)
     print()
 

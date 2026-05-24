@@ -1,0 +1,86 @@
+{
+  "version": "stub-pre-recording",
+  "isf_url": "https://isf.e2open.com/kc/app/isf",
+  "_comment": "Replace this file's contents with selectors captured via the codegen recording session. See RECORDING.md.",
+  "actions": {
+    "new_isf": { "selector": "", "type": "click" }
+  },
+  "fields": {
+    "isf_etd":                   { "selector": "", "type": "fill", "format": "MM/DD/YYYY" },
+    "isf_eta":                   { "selector": "", "type": "fill", "format": "MM/DD/YYYY" },
+    "isf_vessel":                { "selector": "", "type": "fill" },
+    "isf_hbl_scac":              { "selector": "", "type": "fill" },
+    "isf_hbl_number":            { "selector": "", "type": "fill" },
+    "isf_mbl_scac":              { "selector": "", "type": "fill" },
+    "isf_mbl_number":            { "selector": "", "type": "fill" },
+    "isf_port_code":             { "selector": "", "type": "fill" },
+    "isf_country_of_origin":     { "selector": "", "type": "select_option" },
+    "isf_commodity_description": { "selector": "", "type": "fill" },
+    "isf_importer_ref":          { "selector": "", "type": "fill", "optional": true },
+
+    "isf_importer_name":      { "selector": "", "type": "fill" },
+    "isf_importer_addr1":     { "selector": "", "type": "fill" },
+    "isf_importer_addr2":     { "selector": "", "type": "fill", "optional": true },
+    "isf_importer_city":      { "selector": "", "type": "fill" },
+    "isf_importer_state":     { "selector": "", "type": "fill", "optional": true },
+    "isf_importer_zip":       { "selector": "", "type": "fill" },
+    "isf_importer_country":   { "selector": "", "type": "select_option" },
+
+    "isf_seller_name":      { "selector": "", "type": "fill" },
+    "isf_seller_addr1":     { "selector": "", "type": "fill" },
+    "isf_seller_addr2":     { "selector": "", "type": "fill", "optional": true },
+    "isf_seller_city":      { "selector": "", "type": "fill" },
+    "isf_seller_state":     { "selector": "", "type": "fill", "optional": true },
+    "isf_seller_zip":       { "selector": "", "type": "fill", "optional": true },
+    "isf_seller_country":   { "selector": "", "type": "select_option" },
+
+    "isf_manufacturer_name":      { "selector": "", "type": "fill" },
+    "isf_manufacturer_addr1":     { "selector": "", "type": "fill" },
+    "isf_manufacturer_addr2":     { "selector": "", "type": "fill", "optional": true },
+    "isf_manufacturer_city":      { "selector": "", "type": "fill" },
+    "isf_manufacturer_state":     { "selector": "", "type": "fill", "optional": true },
+    "isf_manufacturer_zip":       { "selector": "", "type": "fill", "optional": true },
+    "isf_manufacturer_country":   { "selector": "", "type": "select_option" },
+
+    "isf_buyer_name":      { "selector": "", "type": "fill" },
+    "isf_buyer_addr1":     { "selector": "", "type": "fill" },
+    "isf_buyer_addr2":     { "selector": "", "type": "fill", "optional": true },
+    "isf_buyer_city":      { "selector": "", "type": "fill" },
+    "isf_buyer_state":     { "selector": "", "type": "fill", "optional": true },
+    "isf_buyer_zip":       { "selector": "", "type": "fill" },
+    "isf_buyer_country":   { "selector": "", "type": "select_option" },
+
+    "isf_shipto_name":      { "selector": "", "type": "fill" },
+    "isf_shipto_addr1":     { "selector": "", "type": "fill" },
+    "isf_shipto_addr2":     { "selector": "", "type": "fill", "optional": true },
+    "isf_shipto_city":      { "selector": "", "type": "fill" },
+    "isf_shipto_state":     { "selector": "", "type": "fill", "optional": true },
+    "isf_shipto_zip":       { "selector": "", "type": "fill" },
+    "isf_shipto_country":   { "selector": "", "type": "select_option" },
+
+    "isf_stuffing_name":      { "selector": "", "type": "fill" },
+    "isf_stuffing_addr1":     { "selector": "", "type": "fill" },
+    "isf_stuffing_addr2":     { "selector": "", "type": "fill", "optional": true },
+    "isf_stuffing_city":      { "selector": "", "type": "fill" },
+    "isf_stuffing_state":     { "selector": "", "type": "fill", "optional": true },
+    "isf_stuffing_zip":       { "selector": "", "type": "fill", "optional": true },
+    "isf_stuffing_country":   { "selector": "", "type": "select_option" },
+
+    "isf_consolidator_name":      { "selector": "", "type": "fill" },
+    "isf_consolidator_addr1":     { "selector": "", "type": "fill" },
+    "isf_consolidator_addr2":     { "selector": "", "type": "fill", "optional": true },
+    "isf_consolidator_city":      { "selector": "", "type": "fill" },
+    "isf_consolidator_state":     { "selector": "", "type": "fill", "optional": true },
+    "isf_consolidator_zip":       { "selector": "", "type": "fill", "optional": true },
+    "isf_consolidator_country":   { "selector": "", "type": "select_option" },
+
+    "isf_htsus_codes": {
+      "selector": "",
+      "type": "list_fill",
+      "row_template": {
+        "add_row_button": "",
+        "code_input": ""
+      }
+    }
+  }
+}

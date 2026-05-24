@@ -1,70 +1,96 @@
-# DocHopper
+# EntryOps (desktop)
 
-Import process documentation automation. Extracts line-item data from shipper / vendor PDFs (commercial invoices, packing lists, bills of lading), validates it against a parts master and HTS reference database, and exports a structured XLSX worksheet for a downstream customs entry process.
+**Operations platform for customs entry filing.** Drop a PDF or Excel
+file in, get a CBP-ready entry summary out. Built for licensed customs
+brokers, in-house trade-compliance teams, and anyone whose day starts
+with re-keying line items off a supplier's commercial invoice.
 
-Built for US import customs brokers and in-house import logistics teams. Extracted from a production customs-brokerage app.
+EntryOps ships as two products under one wordmark:
 
-## Workflow
+| Edition | License | Where |
+|---|---|---|
+| **EntryOps (cloud)** | Proprietary multi-tenant SaaS | <https://entryops.us> |
+| **EntryOps (desktop)** | MIT — this repo | <https://github.com/ProcessLogicLabs/entryops-desktop> |
 
-1. Drop one or more PDFs (or Excel / CSV invoices, or a ZIP) on the PDF Processing tab.
-2. The template engine picks a parser by document layout and extracts part numbers, quantities, unit prices, country of origin, PO numbers, and weights.
-3. Each part is looked up in the parts_master. HTS code, CBP quantity unit, MID, country of origin, Section 232 metal percentages, and Section 301 exclusion code come from the master record. Parts missing from the database — or in the database but missing required fields — surface in a pre-export dialog.
-4. Enrichment: split line values by material percentage (steel / aluminum / copper / wood / auto), allocate weights proportionally, normalize country fields to ISO 2-letter codes, compute CBP Qty1 / Qty2 from `hts_units`.
-5. Export to XLSX via an operator-configured column-mapping profile. Output is a worksheet ready to hand off to an entry tool.
+The desktop edition is the open-source ancestor of the cloud product
+and remains under active development. Both share the same extraction
+core, template catalog, parts-master enrichment, and CBP-compliant
+Section 232 / 301 handling.
 
-The operator reviews and edits the preview table before export.
+## Why EntryOps
 
-## Components
+- **Operator-in-the-loop by design.** The app extracts, the human
+  verifies, the app drives the downstream system. No silent automation
+  that submits the wrong field because a PDF layout changed.
+- **Plugin-pattern templates.** Drop a `.py` file into `templates/`
+  and it's auto-discovered. Inherit from `BaseTemplate`, override a
+  few regex patterns, return line items. No registration step.
+- **AI Template Assistant.** Optional chat-side panel that drafts
+  new supplier templates against a sample invoice. Provider SDKs
+  install on demand — bring your own Anthropic / OpenAI / Ollama key.
+- **OCR fallback.** Image-only PDFs route through Tesseract when
+  text extraction fails. Cache sidecar keeps reprocessing fast.
+- **CBP-compliant Section 232 + 301.** Built-in handlers for the
+  cast-iron / aluminum / steel content rules under CSMS #65236645,
+  with separate cell-pill highlighting for 301 exception part numbers
+  so the operator sees both signals at once.
 
-- **Template engine.** Plugin pattern — drop a `.py` into `Dochopper/templates/`, inherit from `BaseTemplate`, return line items. Auto-discovered at startup. Eight generic templates ship today:
+## What it does today
 
-  | Template | Parses |
-  |---|---|
-  | `standard_invoice` | Commercial invoice (PO, line items, qty, price) |
-  | `tabular_invoice` | Invoices with table borders / strict columns |
-  | `simple_invoice` | Minimal-field documents |
-  | `proforma_invoice` | Pre-shipment proformas |
-  | `smart_universal` | Data-shape fallback (part-code / qty / price) |
-  | `bill_of_lading` | Ocean BOL gross weight |
-  | `lacey_act_form` | USDA PPQ Form 505 |
-  | `sample_template` | Starter — copy and edit |
+The included generic templates cover:
 
-- **parts_master** — local SQLite. Canonical part number, HTS code, CBP qty unit, country of origin, MID, Section 232 metal percentages, country of melt / cast / smelt, Section 301 exclusion code.
-- **HTS reference DB** — bundled `hts.db` for Qty1 / Qty2 unit lookups.
-- **MID list** — managed in Settings.
-- **Export profiles** — column-mapping presets per downstream system.
-- **Folder profiles** — saved input / output folder pairs per client.
-- **OCR fallback** — Tesseract for image-only PDFs. No-op if Tesseract is not installed.
+| Template | What it parses |
+|---|---|
+| `standard_invoice` | Typical commercial invoice (PO, line items, qty, price) |
+| `tabular_invoice` | Invoices with visible table borders / strict columns |
+| `simple_invoice` | Minimal-field documents |
+| `proforma_invoice` | Pre-shipment proformas |
+| `smart_universal` | Data-shape fallback that recognizes part-code / qty / price |
+| `bill_of_lading` | Ocean BOL extraction (gross weight) |
+| `lacey_act_form` | USDA PPQ Form 505 (wood declarations) |
+| `sample_template` | Starter — copy and edit to add your own |
+
+Plus:
+- **Parts master & aliases** — local SQLite store for canonical part
+  numbers, HTS codes, country of origin, and Section 232 metal
+  content.
+- **Excel/CSV export profiles** — operator-configurable column
+  mappings so the same extraction can feed multiple downstream
+  formats.
+- **Section 232 metal-content workflow** — value-based duty
+  calculations per CSMS #65236645 with both aluminum and steel
+  smelter / cast / melt country tracking.
 
 ## Quickstart
 
 ```bash
-git clone https://github.com/ProcessLogicLabs/dochopper.git
-cd dochopper
+git clone https://github.com/ProcessLogicLabs/entryops-desktop.git
+cd entryops-desktop
 pip install -e .
-python Dochopper/dochopper.py
+entryops          # or `python entryops.py`
 ```
 
-First launch runs a setup wizard for the initial admin account.
-
-1. Settings → set default input / output folders.
-2. Parts Import tab → bulk-load parts_master from CSV.
-3. PDF Processing tab → drop a vendor PDF, pick a template (or let it auto-match), export.
+First launch shows a one-time setup wizard to create an admin
+account. After that, drop a PDF onto the **Invoice Processing** tab
+and pick a template.
 
 ## Roadmap
 
-- Section 232 / 301 / 122 chapter 99 routing per current CSMS guidance
-- Shared mailbox auto-ingest (Outlook)
-- Template registry for sharing supplier formats
-- DMS integrations (DocuWare, etc.)
+- Template marketplace / registry
+- Outlook inbox monitor (auto-ingest from a shared mailbox)
+- DocuWare REST integration
+- Hand-off to the cloud edition for shared workflows
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Most useful contributions:
+PRs welcome. The highest-impact areas:
 
-- New templates for specific supplier invoice formats
-- parts_master / HTS / Section 232 setup walkthroughs
-- Test coverage for the enrichment pipeline
+- **New supplier templates** — drop a `.py` file in `templates/` and
+  open a PR. The auto-discovery loader picks it up.
+- **Documentation** — the parts-master / alias / enrichment pipeline
+  could use more worked examples.
+- **Downstream-system drivers** — anything that takes the extracted
+  rows and posts them somewhere useful.
 
 ## License
 
